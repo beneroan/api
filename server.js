@@ -3,11 +3,11 @@ const app = express();
 const PORT = 5000;
 
 const getMachineStatus = (callback) => {
-   callback(Math.random() > 0.5);
+   callback((Math.floor((new Date()) / 5000) % 2) == 0);
 }
 
 const getFireStatus = (callback) => {
-   callback(Math.random() > 0.5);
+   callback((Math.floor((new Date()) / 5000) % 2) == 0);
 }
 
 app.get('/status/machine', (req, res) => {
