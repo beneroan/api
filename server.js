@@ -25,7 +25,10 @@ const getMachineStatus = (id, callback) => {
 }
 
 const getFireStatus = (callback) => {
-   callback((Math.floor((new Date()) / 5000) % 2) == 0);
+   request('http://localhost:5002/status/fire', (err, res, body) => {
+      body = JSON.parse(body);
+      callback(body.status);
+   });
 }
 
 const sendText = (number, message) => {
