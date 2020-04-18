@@ -5,6 +5,8 @@ const PORT = 5000;
 
 app.use(cors());
 
+const lastFreeDb = {};
+
 const getMachineStatus = (id, callback) => {
    if (!id || id == 'A100Laundry Machine 1') {
       callback((Math.floor((new Date()) / 5000) % 2) == 0);
@@ -18,9 +20,14 @@ const getFireStatus = (callback) => {
 }
 
 app.get('/status/machine', (req, res) => {
-   getMachineStatus(req.query.wing + req.query.machine, (status) => {
+   const id = req.query.wing + req.query.machine;
+   getMachineStatus(id, (status) => {
+      if (status) {
+         lastFreeDb[id] = (new Date())
+      }
       res.json({
-         free: status
+         free: status,
+         lastFree: lastFreeDb[id]
       });
    });
 });
