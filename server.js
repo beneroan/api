@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 6000;
+const PORT = 5000;
 
 const getMachineStatus = (callback) => {
    callback(Math.random() > 0.5);
