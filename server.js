@@ -6,7 +6,6 @@ const PORT = 5000;
 app.use(cors());
 
 const getMachineStatus = (id, callback) => {
-   console.log(id)
    if (!id || id == 'A100Laundry Machine 1') {
       callback((Math.floor((new Date()) / 5000) % 2) == 0);
    } else {
